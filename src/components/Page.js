@@ -11,7 +11,7 @@ const Page = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(3);
   const redirectTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const Page = () => {
       switch (currentPage) {
         case 1:
           setTimeout(() => {
-            playAudio('utils/Audio1.mp3'); // Adicione o caminho correto para o áudio
+            playAudio('utils/Intro.wav'); // Adicione o caminho correto para o áudio
           }, 5000);
         
           // Página 1: Animação de cubo com textura
@@ -155,7 +155,7 @@ const Page = () => {
         
 
           case 2:
-            playAudio('utils/Audio2.mp3');
+            playAudio('utils/Apresentação (Audio 02).wav');
           
             // Adiciona um atraso de 9 segundos antes de iniciar as animações
             setTimeout(() => {
@@ -186,7 +186,7 @@ const Page = () => {
                 scene.add(ball);
               }
           
-              const fallSpeed = 0.05;
+              const fallSpeed = 0.1;
           
               const animateBalls = () => {
                 balls.forEach(ball => {
@@ -234,7 +234,7 @@ const Page = () => {
           
             redirectTimeoutRef.current = setTimeout(() => {
               setCurrentPage(3);
-            }, 29000);
+            }, 23000);
             break;
           
           
@@ -246,7 +246,7 @@ const Page = () => {
 
             case 3:
               // Tocar o áudio
-              playAudio('utils/Audio3OK.mp3'); // Caminho para o áudio
+              playAudio('utils/Instruções (Audio 03).wav'); // Caminho para o áudio
             
               // Página 3: Animação de retângulo
               camera.position.set(9, 1.5, 9);
@@ -328,8 +328,8 @@ const Page = () => {
                     setTimeout(() => changeTexture(18), 90564);   // Muda para Texture19.png em 1:xx:xx - Zona 4 / 7
 
                     setTimeout(() => changeTexture(19), 92890);   // Muda para Texture20.png em 1:32:89 - Zona 5 / 1
-                    setTimeout(() => changeTexture(21), 108980);  // Muda para Texture22.png em 1:48:98 - Zona 4 / 9
-                    setTimeout(() => changeTexture(20), 109560);  // Muda para Texture22.png em x:xx:xx - Zona 4 / 10
+                    setTimeout(() => changeTexture(20), 108980);  // Muda para Texture22.png em 1:48:98 - Zona 4 / 9
+                    setTimeout(() => changeTexture(21), 112560);  // Muda para Texture22.png em x:xx:xx - Zona 4 / 10
             
                       // Função para criar um efeito de flutuação
                       const floatAmplitude = 0.05; // Amplitude da flutuação
