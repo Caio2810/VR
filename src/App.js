@@ -6,6 +6,7 @@ import PageTeste from './components/PageTeste';
 import Page2 from './components/Page2';
 import Page from './components/Page';
 import JsonAnimation from './components/JsonAnimation';
+import ImgAnimation from './components/ImgAnimation';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/page2" element={<Page2 />} />
         <Route path="/pageteste" element={<PageTeste />} />
         <Route path="/jsona" element={<JsonAnimation />} />
+        <Route path="/img" element={<ImgAnimation />} />
       </Routes>
     </Router>
   );
