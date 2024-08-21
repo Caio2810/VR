@@ -283,7 +283,11 @@ const Page = () => {
                 'utils/ZoneCards/Texture19.png',
                 'utils/ZoneCards/Texture20.png',
                 'utils/ZoneCards/Texture21.png',
-                'utils/ZoneCards/Texture22.png'
+                'utils/ZoneCards/Texture22.png',
+                'utils/ZoneCards/Texture0.png', //Não mudar posição para não estragar array
+                'utils/ZoneCards/Texture3-1.png', //Não mudar posição para não estragar array
+
+
                           ];
                         
             const textures = [];
@@ -298,7 +302,7 @@ const Page = () => {
           
                   // Quando todas as texturas estiverem carregadas, inicie a animação
                   if (texturesLoaded === texturePaths.length) {
-                    const rectangleMaterial = new THREE.MeshBasicMaterial({ map: textures[0] });
+                    const rectangleMaterial = new THREE.MeshBasicMaterial({ map: textures[22] });
                     const rectangle = new THREE.Mesh(rectangleGeometry, rectangleMaterial);
                     rectangle.position.set(0, 1, -2);
                     scene.add(rectangle);
@@ -310,16 +314,18 @@ const Page = () => {
                     };
           
                     // Sequência de mudanças de textura com base nos tempos especificados
+                    setTimeout(() => changeTexture(0), 35650);   // Muda para Texture1.png em 0:35:65 - Repouso 2
                     setTimeout(() => changeTexture(1), 40860);   // Muda para Texture2.png em 0:40:86 - Repouso 2
 
                     setTimeout(() => changeTexture(2), 45880);   // Muda para Texture3.png em 0:45:88 - Zona 1 / 1
-                    setTimeout(() => changeTexture(3), 50230);   // Muda para Texture4.png em 0:50:23  - Zona 1 / 2
+                    setTimeout(() => changeTexture(2), 47530);   // Muda para Texture3-1.png em 0:47:53 - Zona 1 / 2
+                    setTimeout(() => changeTexture(3), 50230);   // Muda para Texture4.png em 0:50:23  - Zona 1 / 3
 
                     setTimeout(() => changeTexture(4), 56460);   // Muda para Texture5.png em 0:56:46 - Zona 2 / 1
                     setTimeout(() => changeTexture(5), 61000);   // Muda para Texture6.png em 1:01:00 - Zona 2 / 2
                     setTimeout(() => changeTexture(6), 64500);   // Muda para Texture7.png em 1:04:50 - Zona 2 / 3
-                    setTimeout(() => changeTexture(7), 67090);   // Muda para Texture8.png em 1:07:09 - Zona 3 / 1
 
+                    setTimeout(() => changeTexture(7), 67090);   // Muda para Texture8.png em 1:07:09 - Zona 3 / 1
                     setTimeout(() => changeTexture(8), 67090);   // Muda para Texture9.png em 1:07:09 - Zona 3 / 2
                     setTimeout(() => changeTexture(9), 73130);   // Muda para Texture10.png em 1:12:13 - Zona 3 / 3
                     setTimeout(() => changeTexture(10), 75850);   // Muda para Texture11.png em 1:15:85 - Zona 3 / 4
