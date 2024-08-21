@@ -1,6 +1,6 @@
 ## - Git Clone no repositório
 
-## - Instalar bibliotecas
+## - Instalar bibliotecas no diretório
 
 ```
 npm install
@@ -24,5 +24,5 @@ Tem que fazer uma conta e pegar seu token de autenticação
 npm start
 ngrok http 3000
 ```
-
-Vai dar um endereço https, só usar ele que vai funcionar.
+***ngrok só funciona com o npm start rodando**
+### Vai gerar um endereço https, só usar ele que vai funcionar.

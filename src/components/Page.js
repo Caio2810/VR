@@ -11,7 +11,7 @@ const Page = () => {
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const rendererRef = useRef(null);
-  const [currentPage, setCurrentPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
   const redirectTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -110,8 +110,13 @@ const Page = () => {
           // Página 1: Animação de cubo com textura
           const cubeGeometry1 = new THREE.BoxGeometry();
           const textureLoader = new THREE.TextureLoader();
-          const texture = textureLoader.load('utils/moovz.jpg');
-          const cubeMaterial1 = new THREE.MeshBasicMaterial({ map: texture });
+        
+          // Carregar as duas texturas
+          const blackTexture = textureLoader.load('utils/preto.jpg');
+          const moovzTexture = textureLoader.load('utils/moovz.jpg');
+        
+          // Começa com a textura preta
+          const cubeMaterial1 = new THREE.MeshBasicMaterial({ map: blackTexture });
           const cube1 = new THREE.Mesh(cubeGeometry1, cubeMaterial1);
           cube1.position.set(0, -5, -5);
           scene.add(cube1);
@@ -142,6 +147,12 @@ const Page = () => {
             requestAnimationFrame(animateCube1); // Usa requestAnimationFrame para otimizar a animação
           };
         
+          // Espera 12 segundos antes de trocar a textura para moovz.jpg
+          setTimeout(() => {
+            cubeMaterial1.map = moovzTexture;
+            cubeMaterial1.needsUpdate = true; // Atualiza a textura
+          }, 12000);
+        
           // Espera o tempo determinado antes de iniciar a animação
           setTimeout(() => {
             startTime = Date.now(); // Marca o tempo de início quando a animação começa
@@ -152,6 +163,7 @@ const Page = () => {
             setCurrentPage(2);
           }, 18000);
           break;
+        
         
 
           case 2:
@@ -168,7 +180,7 @@ const Page = () => {
                 { color: 0x00bfff, size: 0.1 }  // Azul claro: menor
               ];
           
-              const numBalls = 350;
+              const numBalls = 200;
           
               const balls = [];
               for (let i = 0; i < numBalls; i++) {
@@ -197,6 +209,7 @@ const Page = () => {
                     ball.position.x = (Math.random() - 0.5) * 10;
                     ball.position.z = (Math.random() - 0.5) * 10;
                   }
+
                 });
           
                 renderer.render(scene, camera);
@@ -236,13 +249,6 @@ const Page = () => {
               setCurrentPage(3);
             }, 23000);
             break;
-          
-          
-          
-          
-          
-          
-          
 
             case 3:
               // Tocar o áudio
@@ -355,10 +361,11 @@ const Page = () => {
                   }
                 );
               });
-            
-              redirectTimeoutRef.current = setTimeout(() => {
-                setCurrentPage(1);
-              }, 300000);
+              
+              // Redirecionamento após o case 3
+              //redirectTimeoutRef.current = setTimeout(() => {
+              //  setCurrentPage(1);
+              //}, 300000);
               break;
             
             
