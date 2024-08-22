@@ -5,6 +5,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { TextureLoader } from 'three';
+import { FontLoader } from 'three/examples/jsm/Addons.js';
+import { TextGeometry } from 'three/examples/jsm/Addons.js';
+
 
 const Page = () => {
   const containerRef = useRef(null);
@@ -100,6 +103,7 @@ const Page = () => {
       while (scene.children.length > 0) {
         scene.remove(scene.children[0]);
       }
+
 
       switch (currentPage) {
 
@@ -448,12 +452,12 @@ const Page = () => {
           camera.position.set(0, 1.5, 5); // Move a câmera mais próxima dos objetos
         
           // Aumentar a largura e altura dos retângulos
-          const rectangleGeometryAluno = new THREE.BoxGeometry(4, 5, 0.01); // Geometria do primeiro retângulo (largura e altura aumentadas)
+          const rectangleGeometryAluno = new THREE.BoxGeometry(6.5, 5, 0.01); // Geometria do primeiro retângulo (largura e altura aumentadas)
           const rectangleGeometryTimes = new THREE.BoxGeometry(6, 5, 0.01); // Geometria do segundo retângulo (largura e altura aumentadas)
         
           // Caminhos das texturas
-          const texturePathAluno = 'utils/APP_ALUNO.jpg'; // Primeira textura
-          const texturePathTimes = 'utils/APP_TIMES (1).jpg'; // Segunda textura
+          const texturePathAluno = 'utils/TESTE (1).png'; // Primeira textura
+          const texturePathTimes = 'utils/TESTE2.jpg'; // Segunda textura
         
           // Cria e adiciona os retângulos à cena
           const createRectangles = () => {
@@ -528,8 +532,6 @@ const Page = () => {
         
           break;
         
-        
-
 
         // RANKING E PÓDIO
         case 6:
@@ -595,7 +597,6 @@ const Page = () => {
         case 7:
           playAudio('utils/Apresentação 03 (New).wav');
         
-          // Adiciona um atraso de 9 segundos antes de iniciar as animações
           setTimeout(() => {
 
         
@@ -626,10 +627,63 @@ const Page = () => {
               console.error('Erro ao carregar o modelo GLB:', error);
             });
           },);
+
+          //Redirecionamento após o case 6
+          redirectTimeoutRef.current = setTimeout(() => {
+            setCurrentPage(8);
+          }, 7000);
           break;
 
 
-
+          case 8:
+            const loader = new FontLoader();
+            loader.load('https://threejs.org/examples/fonts/droid/droid_serif_bold.typeface.json', (font) => {
+              const geometry = new TextGeometry('Experiência finalizada, muito obrigado\npor partilhar do futuro conosco!', {
+                font: font,
+                size: 0.3, // Aumenta o tamanho do texto
+                height: 0.01, // Reduz a profundidade para evitar borrões
+              });
+          
+              const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+              const textMesh = new THREE.Mesh(geometry, material);
+          
+              geometry.center(); // Centraliza o texto na tela
+              textMesh.position.set(0, 1.5, -3); // Posição ajustada para aparecer na frente da visão do usuário
+              scene.add(textMesh);
+            });
+          
+            // Adiciona o botão
+            const button = document.createElement('button');
+            button.innerText = 'Reiniciar Experiência';
+            button.style.position = 'fixed';
+            button.style.bottom = '80px';
+            button.style.left = '50%';
+            button.style.transform = 'translateX(-50%)';
+            button.style.padding = '10px 20px';
+            button.style.backgroundColor = 'white';
+            button.style.color = 'black';
+            button.style.border = 'none';
+            button.style.borderRadius = '5px';
+            button.style.fontSize = '25px';
+            button.style.fontWeight = 'bold';
+            button.style.cursor = 'pointer';
+          
+            button.addEventListener('click', () => {
+              window.location.href = '/'; // Redireciona para a página inicial
+            });
+          
+            document.body.appendChild(button);
+          
+            // Desativa o modo VR após 8 segundos
+            setTimeout(() => {
+              if (renderer.xr.isPresenting) {
+                renderer.xr.getSession().end();
+              }
+            }, 8000); // 8000 milissegundos = 8 segundos
+            break;
+          
+          
+          
           
 
         default:
