@@ -7,6 +7,8 @@ import Page2 from './components/Page2';
 import Page from './components/Page';
 import JsonAnimation from './components/JsonAnimation';
 import ImgAnimation from './components/ImgAnimation';
+import Video360 from './components/Video360';
+import Pagesssssss from './components/Teste';
 
 const App = () => {
   return (
@@ -19,6 +21,9 @@ const App = () => {
         <Route path="/pageteste" element={<PageTeste />} />
         <Route path="/jsona" element={<JsonAnimation />} />
         <Route path="/img" element={<ImgAnimation />} />
+        <Route path="/video" element={<Video360 />} />
+        <Route path="/teste" element={<Pagesssssss />} />
+
       </Routes>
     </Router>
   );
