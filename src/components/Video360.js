@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { VRButton } from 'three/examples/jsm/Addons.js';
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-const Video360 = () => {
+const Image360 = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -15,21 +15,13 @@ const Video360 = () => {
 
     const scene = new THREE.Scene();
 
-    // Esfera para vídeo 360
+    // Esfera para imagem 360
     const geometry = new THREE.SphereGeometry(500, 60, 40);
     geometry.scale(-1, 1, 1);
 
-    // Vídeo
-    const video = document.createElement('video');
-    video.src = 'utils/pano.mp4'; // caminho para o vídeo
-    video.crossOrigin = 'anonymous';
-    video.loop = true;
-    video.muted = true;
-    video.playsInline = true; // Adicione este atributo
-    video.play();
-    
-    const texture = new THREE.VideoTexture(video);
-    texture.colorSpace = THREE.SRGBColorSpace;
+    // Imagem
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load('utils/etapa 2.png'); // caminho para a imagem 360
     
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const mesh = new THREE.Mesh(geometry, material);
@@ -75,4 +67,4 @@ const Video360 = () => {
   return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />;
 };
 
-export default Video360;
+export default Image360;
